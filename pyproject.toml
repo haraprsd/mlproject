@@ -1,0 +1,16 @@
+[project]
+name = "mlproject"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastparquet>=2024.11.0",
+    "numpy>=2.3.5",
+    "pandas>=2.3.3",
+    "psycopg[binary]>=3.3.2",
+    "pyarrow>=22.0.0",
+    "python-dotenv>=1.2.1",
+    "scikit-learn>=1.8.0",
+    "sqlalchemy>=2.0.45",
+]
