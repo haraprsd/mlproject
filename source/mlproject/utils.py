@@ -1,26 +1,19 @@
-from dotenv import load_dotenv
 import os
 import sys
 from source.mlproject.expection import CustomException
 from source.mlproject.logger import logging
 import pandas as pd
-#import psycopg
-from sqlalchemy import create_engine
+import numpy as np
+import pickle
 
-load_dotenv()  # Load .env file FIRST
-
-host = os.getenv("host")
-uname = os.getenv("uname")
-password = os.getenv("password")
-db = os.getenv("db")
-
-def read_sql_data():
-    logging.info("Reading postgreSQL started")
+def save_pickle_object(filename, obj):
     try:
-        engine = create_engine(f'postgresql+psycopg://{uname}:{password}@{host}:5432/{db}')
-        logging.info ("Connected to Database")
-        df = pd.read_sql_query("select * from score", engine)
+        dir_path = os.path.dirname(filename)
+        os.makedirs(dir_path, exist_ok=True)
 
-        return df
+        with open(filename, "wb") as file_obj:
+            pickle.dump(obj, file_obj)
+            
     except Exception as e:
-        raise CustomException(e, sys)    
+        raise CustomException (e, sys)
+

@@ -39,7 +39,11 @@ class DataIngestion:
 
             save_to_sql(train_data, table_name="train_data")
             save_to_sql(test_data, table_name="test_data")
-            
+
+            return (
+                self.ingestion_config.train_data_csv, 
+                self.ingestion_config.test_data_csv
+            )
             logging.info("Data ingestion is completed")
         except Exception as e:
             raise CustomException(e, sys)
